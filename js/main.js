@@ -13,7 +13,7 @@ import Player from "./player.js";
 import { CANVAS, CTX, MS_PER_FRAME, KEYS } from "./globals.js";
 
 // Globals
-const HERO = new Player(20, 50, 48, 48);
+const HERO = new Player(120, 50, 48, 48);
 
 let frame_time = performance.now()
 
@@ -30,9 +30,13 @@ document.addEventListener("contextmenu", (event) => {
  * The user pressed a key on the keyboard 
  */
 function keypress(event) {
+  console.log(event.keyCode)
 
+  if (event.keyCode == KEYS.SPACE) {
+    console.log(HERO.bottom, HERO.velocity.y)
+    HERO.jump();
+  }
 }
-
 
 /**
  * The main game loop
@@ -56,7 +60,6 @@ function update() {
   
   // Draw our hero
   HERO.update();
-  
 }
 
 // Start the animation
